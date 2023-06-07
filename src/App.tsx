@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { User } from "./User";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export interface IUser {
+  id: number;
+  name: string;
+  age: number;
+  isVisible?: boolean;
 }
+
+const users: IUser[] = [
+  { id: 1, name: "user1", age: 9 },
+  { id: 2, name: "user2", age: 9 },
+  { id: 3, name: "user3", age: 9, isVisible: true },
+  { id: 4, name: "user4", age: 9 },
+  { id: 5, name: "user5", age: 9 },
+  { id: 6, name: "user6", age: 9, isVisible: true },
+];
+
+const App = () => {
+  const [value, setValue] = useState(0);
+
+  const handleClick = (value: number) => {
+    setValue(value);
+  };
+
+  return (
+    <>
+      {users.map((user) => {
+        return (
+          <User
+            user={user}
+            key={user.id}
+            value={value}
+            isVisible={user.isVisible}
+            onChange={handleClick}
+          >
+            <div>dhjfshdjfh</div>
+          </User>
+        );
+      })}
+    </>
+  );
+};
 
 export default App;
